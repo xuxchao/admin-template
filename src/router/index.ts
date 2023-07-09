@@ -5,10 +5,13 @@ import {
   type RouteRecordRaw,
 } from 'vue-router';
 import LayoutMain from '@/components/Layout/LayoutMain.vue';
-import setting from '~icons/ep/setting';
+import EpSetting from '~icons/ep/setting';
 import { useAccountStore } from '@/stores/account';
+import EpHouse from '~icons/ep/house';
+import EpPosition from '~icons/ep/position';
+import EpPrinter from '~icons/ep/printer';
 
-export type IconsType = typeof setting;
+export type IconsType = typeof EpSetting;
 
 export interface CustomRouteMeta extends RouteMeta {
   /** 图标 */
@@ -41,63 +44,25 @@ export const adminRoute: CustomRouteRecordRaw[] = [
     name: 'home',
     component: () => import('../views/HomeView.vue'),
     meta: {
-      icon: setting,
+      icon: EpHouse,
       title: '首页',
     },
   },
   {
-    path: 'icon',
-    name: 'icon',
+    path: 'business',
+    name: 'business',
     meta: {
-      icon: setting,
-      title: '图标',
+      title: '常见业务',
+      icon: EpPrinter,
     },
     children: [
       {
-        path: 'icon0',
-        name: 'icon0',
-        component: () => import('../views/HomeView.vue'),
-      },
-      {
-        path: 'icon1',
-        name: 'icon1',
-        component: () => import('../views/HomeView.vue'),
-      },
-      {
-        path: 'icon2',
-        name: 'icon2',
-        component: () => import('../views/HomeView.vue'),
-      },
-      {
-        path: 'icon3',
-        name: 'icon3',
-        component: () => import('../views/HomeView.vue'),
-      },
-    ],
-  },
-  {
-    path: 'components',
-    name: 'components',
-    children: [
-      {
-        path: 'table',
-        name: 'table',
-        component: () => import('../views/HomeView.vue'),
-      },
-      {
-        path: 'input',
-        name: 'input',
-        component: () => import('../views/HomeView.vue'),
-      },
-      {
-        path: 'select',
-        name: 'select',
-        component: () => import('../views/HomeView.vue'),
-      },
-      {
-        path: 'radio',
-        name: 'radio',
-        component: () => import('../views/HomeView.vue'),
+        path: 'b-table',
+        name: 'b-table',
+        component: () => import('../views/business/BTable.vue'),
+        meta: {
+          title: '数据列表',
+        },
       },
     ],
   },
@@ -106,6 +71,7 @@ export const adminRoute: CustomRouteRecordRaw[] = [
     name: 'external-link',
     meta: {
       title: '外部链接',
+      icon: EpPosition,
     },
     children: [
       {
@@ -133,6 +99,15 @@ export const adminRoute: CustomRouteRecordRaw[] = [
         meta: {
           title: '极简 Vue 组件',
           url: 'https://simple-ui-nu.vercel.app/',
+        },
+      },
+      {
+        path: 'ep-icons',
+        name: 'ep-icons',
+        component: () => h(NullComponents),
+        meta: {
+          title: 'element plus 图标',
+          url: 'https://icones.js.org/collection/ep',
         },
       },
     ],

@@ -4,11 +4,11 @@ import {
   type CustomRouteRecordRaw,
   type IconsType,
 } from '@/router';
-import { ElMenu, ElMenuItem, ElSubMenu } from 'element-plus';
+import { ElMenu, ElMenuItem, ElSubMenu, ElIcon } from 'element-plus';
+import 'element-plus/theme-chalk/el-icon.css';
 import 'element-plus/theme-chalk/el-menu.css';
 import 'element-plus/theme-chalk/el-menu-item.css';
 import 'element-plus/theme-chalk/el-sub-menu.css';
-import type { RouteRecordRaw } from 'vue-router';
 
 function icons(v?: IconsType) {
   return <span>{v && h(v)}</span>;
@@ -17,10 +17,10 @@ function icons(v?: IconsType) {
 function MenuTitle({ route }: { route: CustomRouteRecordRaw }) {
   const meta = route?.meta;
   return (
-    <div class={'flex items-center'}>
-      {icons(meta?.icon)}
-      <span class={'ml-1'}>{meta?.title ?? route.name}</span>
-    </div>
+    <>
+      <ElIcon>{icons(meta?.icon)}</ElIcon>
+      <span>{meta?.title ?? route.name}</span>
+    </>
   );
 }
 
@@ -54,7 +54,10 @@ function MenuItem(routes: CustomRouteRecordRaw[]) {
     } else {
       return (
         <ElMenuItem onClick={() => tapHandler(item)} index={item.name as string}>
-          <MenuTitle route={item}></MenuTitle>
+          {{
+            default: () => <ElIcon>{icons(item.meta?.icon)}</ElIcon>,
+            title: () => item.meta?.title ?? item.name,
+          }}
         </ElMenuItem>
       );
     }
@@ -64,6 +67,10 @@ function MenuItem(routes: CustomRouteRecordRaw[]) {
 export default defineComponent({
   setup() {
     const { name } = useRoute();
-    return () => <ElMenu defaultActive={(name as string) ?? 'home'}>{MenuItem(adminRoute)}</ElMenu>;
+    return () => (
+      <ElMenu collapseTransition={false} defaultActive={(name as string) ?? 'home'}>
+        {MenuItem(adminRoute)}
+      </ElMenu>
+    );
   },
 });

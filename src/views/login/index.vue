@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-screen h-screen justify-center items-center">
+  <div class="flex w-screen h-screen justify-center items-center bg-gray-500">
     <el-card>
       <el-form label-width="40">
         <el-form-item label="账号">
