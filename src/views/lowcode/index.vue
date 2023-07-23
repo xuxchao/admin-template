@@ -1,6 +1,17 @@
 <template>
   <div>
     <h1>低代码平台</h1>
+    <br />
+    <h2>渲染区域</h2>
+    <template v-for="info in metaInfos" :key="info.id">
+      <component
+        v-bind="dealProps(info.props)"
+        :is="ALL_COMMENTS.get(info.comonentName)"
+      ></component>
+      <pre>{{ dealProps(info.props) }}</pre>
+    </template>
+    <!-- <br /> -->
+    <h2>拖拽区域</h2>
     <div class="flex gap-4 p-2">
       <draggable
         class="flex flex-col gap-2 min-w-[300px] p-2"
@@ -37,9 +48,27 @@
 import LowItem from './components/LowItem.vue';
 import ColContainer from './materiel/ColContainer.vue';
 import { ElButton } from 'element-plus';
-import type { MetaDataItem } from './type';
+import type { MetaDataItem, MetaInfoItem, PropsValue, PropsObject } from './type';
 import draggable from 'vuedraggable';
+import { ALL_COMMENTS } from './cacheAllComponent';
 let globalId = 1000;
+let metaInfos = ref<MetaInfoItem<PropsValue>[]>([
+  {
+    id: 1,
+    comonentName: 'ElButton',
+    props: [
+      {
+        key: 'type',
+        desc: '展示类型',
+        type: 'select',
+        value: ['primary', 'success', 'warning'],
+        userValue: undefined,
+        initValue: 'primary',
+      },
+    ],
+    // slots: []
+  },
+]);
 let cloneList = ref<MetaDataItem<any>[]>([
   {
     id: 1,
@@ -79,6 +108,13 @@ function cloneElement(element: MetaDataItem<any>) {
     ...otherParams,
     id: globalId++,
   };
+}
+
+function dealProps(props?: PropsObject<PropsValue>[]) {
+  return props?.reduce((obj, item) => {
+    obj[item.key] = item.userValue ?? item.initValue;
+    return obj;
+  }, {} as Record<string, PropsValue | undefined>);
 }
 </script>
 <style scoped lang="scss"></style>
