@@ -124,6 +124,24 @@ export const noAuthRoute: CustomRouteRecordRaw[] = [
       noAuth: true,
     },
   },
+  {
+    path: '/lowcode',
+    name: 'lowcode',
+    component: () => import('../views/lowcode/index.vue'),
+    meta: {
+      title: '低代码',
+      noAuth: true,
+    },
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import('../views/lowcode/test.vue'),
+    meta: {
+      title: '低代码',
+      noAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
