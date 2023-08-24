@@ -48,4 +48,3 @@ const { searchValues, resetSearch } = useSearchValue<SearchValue>({
 });
 </script>
 <style scoped lang="scss"></style>
-../../../hooks/useSearchValue
