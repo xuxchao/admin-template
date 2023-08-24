@@ -22,7 +22,6 @@ export const useAccountStore = defineStore(
         avatar: '/image/avatar.png',
       };
       if (redirect.value) {
-        console.log(redirect.value, redirect.value.hash.slice(1));
         router.push(redirect.value.hash.slice(1));
       } else {
         router.push({ name: 'home' });

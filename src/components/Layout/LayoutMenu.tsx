@@ -1,9 +1,4 @@
-import {
-  adminRoute,
-  type CustomRouteMeta,
-  type CustomRouteRecordRaw,
-  type IconsType,
-} from '@/router';
+import { adminRoute, type CustomRouteRecordRaw, type IconsType } from '@/router';
 import { ElMenu, ElMenuItem, ElSubMenu, ElIcon } from 'element-plus';
 import 'element-plus/theme-chalk/el-icon.css';
 import 'element-plus/theme-chalk/el-menu.css';

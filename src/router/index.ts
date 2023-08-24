@@ -7,9 +7,8 @@ import {
 import LayoutMain from '@/components/Layout/LayoutMain.vue';
 import EpSetting from '~icons/ep/setting';
 import { useAccountStore } from '@/stores/account';
-import EpHouse from '~icons/ep/house';
-import EpPosition from '~icons/ep/position';
-import EpPrinter from '~icons/ep/printer';
+import { adminRoute } from './admin';
+import { noAuthRoute } from './external';
 
 export type IconsType = typeof EpSetting;
 
@@ -34,115 +33,9 @@ export type CustomRouteRecordRaw = {
   children?: CustomRouteRecordRaw[];
 } & RouteRecordRaw;
 
-function NullComponents() {
+export function NullComponents() {
   return h('span');
 }
-
-export const adminRoute: CustomRouteRecordRaw[] = [
-  {
-    path: 'home',
-    name: 'home',
-    component: () => import('../views/HomeView.vue'),
-    meta: {
-      icon: EpHouse,
-      title: '首页',
-    },
-  },
-  {
-    path: 'business',
-    name: 'business',
-    meta: {
-      title: '常见业务',
-      icon: EpPrinter,
-    },
-    children: [
-      {
-        path: 'b-table',
-        name: 'b-table',
-        component: () => import('../views/business/BTable.vue'),
-        meta: {
-          title: '数据列表',
-        },
-      },
-    ],
-  },
-  {
-    path: 'external-link',
-    name: 'external-link',
-    meta: {
-      title: '外部链接',
-      icon: EpPosition,
-    },
-    children: [
-      {
-        path: 'github',
-        name: 'github',
-        component: () => h(NullComponents),
-        meta: {
-          title: 'Github',
-          url: 'https://github.com/xuxchao/admin-template',
-        },
-      },
-      {
-        path: 'github-issues',
-        name: 'github-issues',
-        component: () => h(NullComponents),
-        meta: {
-          title: 'Github issues',
-          url: 'https://github.com/xuxchao/admin-template/issues',
-        },
-      },
-      {
-        path: 'simple-ui',
-        name: 'simple-ui',
-        component: () => h(NullComponents),
-        meta: {
-          title: '极简 Vue 组件',
-          url: 'https://simple-ui-nu.vercel.app/',
-        },
-      },
-      {
-        path: 'ep-icons',
-        name: 'ep-icons',
-        component: () => h(NullComponents),
-        meta: {
-          title: 'element plus 图标',
-          url: 'https://icones.js.org/collection/ep',
-        },
-      },
-    ],
-  },
-];
-
-export const noAuthRoute: CustomRouteRecordRaw[] = [
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('../views/login/index.vue'),
-    meta: {
-      title: '登陆',
-      noAuth: true,
-    },
-  },
-  {
-    path: '/lowcode',
-    name: 'lowcode',
-    component: () => import('../views/lowcode/index.vue'),
-    meta: {
-      title: '低代码',
-      noAuth: true,
-    },
-  },
-  {
-    path: '/test',
-    name: 'test',
-    component: () => import('../views/lowcode/test.vue'),
-    meta: {
-      title: '低代码',
-      noAuth: true,
-    },
-  },
-];
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -152,6 +45,14 @@ const router = createRouter({
       path: '/admin',
       component: LayoutMain,
       children: [...adminRoute],
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: import('../views/external/404.vue'),
+      meta: {
+        noAuth: true,
+      },
     },
   ],
 });
@@ -173,3 +74,6 @@ router.beforeEach((to, from, next) => {
 });
 
 export default router;
+
+export * from './admin';
+export * from './external';

@@ -1,5 +1,4 @@
 <template>
-  <div>test</div>
+  <div>首页</div>
 </template>
 <script lang="ts" setup></script>
-<style scoped lang="scss"></style>
