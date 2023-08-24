@@ -49,33 +49,33 @@ export const adminRoute: CustomRouteRecordRaw[] = [
           url: 'https://github.com/xuxchao/admin-template',
         },
       },
-      // {
-      //   path: 'github-issues',
-      //   name: 'github-issues',
-      //   component: () => h(NullComponents),
-      //   meta: {
-      //     title: 'Github issues',
-      //     url: 'https://github.com/xuxchao/admin-template/issues',
-      //   },
-      // },
-      // {
-      //   path: 'simple-ui',
-      //   name: 'simple-ui',
-      //   component: () => h(NullComponents),
-      //   meta: {
-      //     title: '极简 Vue 组件',
-      //     url: 'https://simple-ui-nu.vercel.app/',
-      //   },
-      // },
-      // {
-      //   path: 'ep-icons',
-      //   name: 'ep-icons',
-      //   component: () => h(NullComponents),
-      //   meta: {
-      //     title: 'element plus 图标',
-      //     url: 'https://icones.js.org/collection/ep',
-      //   },
-      // },
+      {
+        path: 'github-issues',
+        name: 'github-issues',
+        component: () => h(NullComponents),
+        meta: {
+          title: 'Github issues',
+          url: 'https://github.com/xuxchao/admin-template/issues',
+        },
+      },
+      {
+        path: 'simple-ui',
+        name: 'simple-ui',
+        component: () => h(NullComponents),
+        meta: {
+          title: '极简 Vue 组件',
+          url: 'https://simple-ui-nu.vercel.app/',
+        },
+      },
+      {
+        path: 'ep-icons',
+        name: 'ep-icons',
+        component: () => h(NullComponents),
+        meta: {
+          title: 'element plus 图标',
+          url: 'https://icones.js.org/collection/ep',
+        },
+      },
     ],
   },
 ];

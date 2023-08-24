@@ -34,7 +34,7 @@
           <LayoutMenu :collapse="isCollapse"></LayoutMenu>
         </div>
         <el-container>
-          <el-main>
+          <el-main class="-ml-2">
             <router-view v-slot="{ Component }">
               <transition name="fade" mode="out-in">
                 <component :is="Component" />
