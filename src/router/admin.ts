@@ -10,7 +10,7 @@ export const adminRoute: CustomRouteRecordRaw[] = [
     name: 'home',
     component: () => import('../views/admin/home/index.vue'),
     meta: {
-      title: '数据列表',
+      title: '首页',
       icon: EpSuitcaseLine,
     },
   },

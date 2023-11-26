@@ -78,3 +78,9 @@ export const useAccountStore = defineStore(
   { persist: true }
 );
 ```
+
+# TODO
+
+1. 发送埋点的通用方法
+2. 权限
+3.

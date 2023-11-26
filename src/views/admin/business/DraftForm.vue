@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <el-card header="草稿列表">
     <el-form :model="form" ref="formRef" :rules="rules" label-width="120">
       <el-form-item prop="name" label="姓名">
         <el-input v-model="form.name"></el-input>
