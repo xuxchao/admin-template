@@ -1,6 +1,8 @@
 export interface Account {
   userName: string;
   avatar: string;
+  token: string;
+  account: string;
 }
 
 export const useAccountStore = defineStore(
@@ -16,11 +18,8 @@ export const useAccountStore = defineStore(
       return new URL(decodeURIComponent(redirect));
     });
 
-    const login = () => {
-      account.value = {
-        userName: 'xuxchao',
-        avatar: '/image/avatar.png',
-      };
+    const login = (params: Account) => {
+      account.value = params;
       if (redirect.value) {
         router.push(redirect.value.hash.slice(1));
       } else {

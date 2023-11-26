@@ -30,6 +30,14 @@ export const adminRoute: CustomRouteRecordRaw[] = [
           title: '数据列表',
         },
       },
+      {
+        path: 'draft-form',
+        name: 'draft-form',
+        component: () => import('../views/admin/business/DraftForm.vue'),
+        meta: {
+          title: '草稿表单',
+        },
+      },
     ],
   },
   {
